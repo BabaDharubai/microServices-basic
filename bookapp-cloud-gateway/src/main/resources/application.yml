@@ -1,0 +1,26 @@
+server:
+  port: 9000
+  
+  #adding routing fir the service- declarative
+  #each routebhas id , uri , predicate
+
+    
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761
+      
+spring:
+  application:
+    name: GATEWAY
+#  cloud:
+#    gateway:
+#      routes:
+#      - id: bookViewService
+#        uri:  lb://BOOK-VIEW-SERVICE
+#        predicates:
+#        - Path=/bookview-api/**
+#      - id: cartService
+#        uri:  lb://CART-SERVICE
+#        predicates:
+#        - Path=/cart-api/**

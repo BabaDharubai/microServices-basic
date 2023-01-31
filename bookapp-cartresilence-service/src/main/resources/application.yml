@@ -1,0 +1,51 @@
+server:
+  port: 7083
+  
+spring:
+  application:
+    name: CARTRESILENCE-SERVICE
+    
+eureka:
+  client:
+    service-url:
+      default-zone: http:localhost:8761
+      
+      
+#configuration for resilence
+resilience4j:
+  circuitbreaker:
+    instances:
+      cartService:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        failureRateThreshold: 50
+        eventConsumerBufferSize: 10
+        recordExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+          - java.util.concurrent.TimeoutException
+          - java.io.IOException
+          - java.lang.Exception
+
+#management.health.circuitbreakers.enabled=true          
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+      
+  #management.endpoints.web.exposure.include=*
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+        
+        
+        
+        
+        

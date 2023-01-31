@@ -1,0 +1,16 @@
+server:
+  port: 8083
+  
+spring:
+  application:
+    name: BOOK-CART-SERVICE
+    
+eureka:
+  client:
+    service-url:
+      default-zone: http:localhost:8761
+      
+logging:
+  level:
+    root: info
+    com: info
